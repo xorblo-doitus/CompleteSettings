@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bej7sviukngcq"]
+
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/base/esl.gd" id="1_cmy5w"]
+
+[node name="ESL" type="Node"]
+script = ExtResource("1_cmy5w")

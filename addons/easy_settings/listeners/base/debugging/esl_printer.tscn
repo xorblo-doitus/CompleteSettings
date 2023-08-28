@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://n5f5galx60ji"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_f4bbg"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/base/debugging/esl_printer.gd" id="2_1axg4"]
+
+[node name="ESLPrinter" instance=ExtResource("1_f4bbg")]
+script = ExtResource("2_1axg4")
+enabled = true
+print_old_value = true

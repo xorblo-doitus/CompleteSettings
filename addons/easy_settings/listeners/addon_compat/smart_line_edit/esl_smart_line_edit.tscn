@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqknaj47jgbnl"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_vtmd8"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/addon_compat/smart_line_edit/esl_smart_line_edit.gd" id="2_lokod"]
+
+[node name="ESLSmartLineEdit" instance=ExtResource("1_vtmd8")]
+script = ExtResource("2_lokod")
+set_only_on_submit = false
+save_debounce_time_sec = 1.0

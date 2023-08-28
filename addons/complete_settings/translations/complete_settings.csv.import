@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dojln4p7i2dfx"
+
+[deps]
+
+files=["res://addons/complete_settings/translations/complete_settings.en.translation", "res://addons/complete_settings/translations/complete_settings.fr.translation"]
+
+source_file="res://addons/complete_settings/translations/complete_settings.csv"
+dest_files=["res://addons/complete_settings/translations/complete_settings.en.translation", "res://addons/complete_settings/translations/complete_settings.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

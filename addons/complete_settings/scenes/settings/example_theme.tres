@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d4dmxjv5l13r7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00o37"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+
+[resource]
+MarginMedium/constants/margin_bottom = 16
+MarginMedium/constants/margin_left = 16
+MarginMedium/constants/margin_right = 16
+MarginMedium/constants/margin_top = 16
+MarginWholeScreen/constants/margin_bottom = 50
+MarginWholeScreen/constants/margin_left = 50
+MarginWholeScreen/constants/margin_right = 50
+MarginWholeScreen/constants/margin_top = 50
+SettingsScrollContainer/base_type = &"ScrollContainer"
+SettingsScrollContainer/styles/panel = SubResource("StyleBoxEmpty_00o37")

@@ -1,0 +1,9 @@
+keys,en,fr
+PHYSICAL,Physical,Physique
+PHYSICAL_TOOLTIP,"Physical keycode corresponds to the position of the key on the keyboard.\nAs an exemple, WASD controls of a QWERTY keyboard will result in ZQSD controls on an AZERTY one.\nCharacter displayed is the one on a QWERTY keyboard.","Les touches physiques correspondent à la position de la touche sur le clavier.\nAinsi, des contrôles en WASD sur un clavier QWERTY seront des contrôles en ZQSD sur un clavier AZERTY.\nLe caractère affiché est celui du clavier QWERTY."
+OK,Ok,Ok
+OK_TOOLTIP,Save modifications.,Sauvegarder les modifications.
+CANCEL,Cancel,Annuler
+CANCEL_TOOLTIP,Cancel modifications.,Annuler les modifications.
+RESET_KEYBIND,​Reset,​Réinitialiser
+RESET_KEYBIND_TOOLTIP,Revert this keybind to it's default.,Réinitialise ce raccourci.

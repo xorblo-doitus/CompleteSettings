@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://gocrldq4i1bl"]
+
+[ext_resource type="Theme" uid="uid://d4dmxjv5l13r7" path="res://addons/complete_settings/scenes/settings/example_theme.tres" id="1_urext"]
+[ext_resource type="PackedScene" uid="uid://fpjnjbm2uirc" path="res://addons/complete_settings/scenes/categories/sound/sound_category.tscn" id="3_slarg"]
+[ext_resource type="PackedScene" uid="uid://bkl0ujm52n4hr" path="res://addons/complete_settings/scenes/categories/video/video_category.tscn" id="4_533ht"]
+[ext_resource type="PackedScene" uid="uid://cacfv61munwfy" path="res://addons/complete_settings/scenes/categories/keybinds/keybinds_category.tscn" id="4_emvtm"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_urext")
+
+[node name="ScreenMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginWholeScreen"
+
+[node name="TabContainer" type="TabContainer" parent="ScreenMargin"]
+layout_mode = 2
+
+[node name="SETTING_CATEGORY_SOUND" parent="ScreenMargin/TabContainer" instance=ExtResource("3_slarg")]
+layout_mode = 2
+
+[node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/TabContainer" instance=ExtResource("4_emvtm")]
+visible = false
+layout_mode = 2
+
+[node name="SETTING_CATEGORY_VIDEO" parent="ScreenMargin/TabContainer" instance=ExtResource("4_533ht")]
+visible = false
+layout_mode = 2

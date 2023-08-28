@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://cacfv61munwfy"]
+
+[ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="1_d1fma"]
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/keybinds/keybinds_category.gd" id="2_iart7"]
+[ext_resource type="PackedScene" uid="uid://we3a300cvpef" path="res://addons/complete_settings/scenes/setting_group/setting_group.tscn" id="3_dhglq"]
+[ext_resource type="PackedScene" uid="uid://cwhxncugpvkhv" path="res://addons/complete_settings/scenes/categories/keybinds/action_entry.tscn" id="4_l7rlu"]
+[ext_resource type="PackedScene" uid="uid://bxg3cfmo0vxny" path="res://addons/complete_settings/scenes/categories/keybinds/keybind_entry.tscn" id="4_qdeh6"]
+
+[node name="SETTING_CATEGORY_KEYBINDS" instance=ExtResource("1_d1fma")]
+script = ExtResource("2_iart7")
+packed_setting_group = ExtResource("3_dhglq")
+packed_action_entry = ExtResource("4_l7rlu")
+packed_keybind_mapper = ExtResource("4_qdeh6")
+alternative_event_names = Array[String](["PRIMARY_KEYBIND", "SECONDARY_KEYBIND", "TERTIARY_KEYBIND", "QUATERNARY_KEYBIND", "QUINARY_KEYBIND", "SENARY_KEYBIND", "SEPTENARY_KEYBIND", "OCTONARY_KEYBIND", "NONARY_KEYBIND", "DENARY_KEYBIND"])
+action_name_prefix = "ACTION_"
+ignored_actions = Array[StringName]([])

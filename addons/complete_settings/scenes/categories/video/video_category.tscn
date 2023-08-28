@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkl0ujm52n4hr"]
+
+[ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="1_4bcvl"]
+[ext_resource type="PackedScene" uid="uid://dicmjv5wn0pd6" path="res://addons/complete_settings/scenes/categories/video/window_mode.tscn" id="2_7rb4a"]
+
+[node name="SETTING_CATEGORY_VIDEO" instance=ExtResource("1_4bcvl")]
+
+[node name="SettingEntry" parent="MarginContainer/Layout/ScrollContainer/SettingList" index="0" instance=ExtResource("2_7rb4a")]
+layout_mode = 2

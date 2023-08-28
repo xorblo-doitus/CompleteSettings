@@ -1,0 +1,25 @@
+key,en,fr
+EXPAND_ALL,Expand all,Tout développer
+COLLAPSE_ALL,Collapse all,Tout réduire
+SETTING_CATEGORY_SOUND,Audio,Audio
+SETTING_CATEGORY_KEYBINDS,Keybinds,Contrôles
+SETTING_CATEGORY_VIDEO,Video,Affichage
+_EMPTY,Empty setting folder,Dossier de paramètres vide
+_SUB_GROUP,Expand for more settings,Développer pour plus de paramètres
+SEARCH,Search,Rechercher
+PRIMARY_KEYBIND,Main,Principal
+SECONDARY_KEYBIND,Secondary,Secondaire
+TERTIARY_KEYBIND,Tertiary,Tertiaire
+QUATERNARY_KEYBIND,Quaternary,Quaternaire
+QUINARY_KEYBIND,Quinary,Quinquénaire
+SENARY_KEYBIND,Senary,Hexanaire
+SEPTENARY_KEYBIND,Septenary,Heptanaire
+OCTONARY_KEYBIND,Octonary,Octonaire
+NONARY_KEYBIND,Nonary,Novénaire
+DENARY_KEYBIND,Denary,Décennaire
+WINDOW_MODE,Window mode,Mode d'affichage de la fenêtre
+WINDOWED,Windowed,Fenêtré
+FULLSCREEN,Fullscreen,Plein écran
+EXCLUSIVE_FULLSCREEN,Exclusive fullscreen,Plein écran exclusif
+MAXIMIZED,Maximized,Maximisé
+MINIMIZED,Minimized,Minimisé

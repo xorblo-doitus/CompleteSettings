@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2633w43w41yc"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_12u24"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/base/line_edit/esl_line_edit.gd" id="2_4ryi0"]
+
+[node name="ESLLineEdit" instance=ExtResource("1_12u24")]
+script = ExtResource("2_4ryi0")
+set_only_on_submit = false
+save_debounce_time_sec = 1.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cukcro8flv5mq"]
+
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.gd" id="1_ied73"]
+
+[node name="SettingEntry" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_ied73")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "_SETTING_NAME"
+autowrap_mode = 3
+
+[connection signal="pre_sort_children" from="." to="." method="_on_pre_sort_children"]

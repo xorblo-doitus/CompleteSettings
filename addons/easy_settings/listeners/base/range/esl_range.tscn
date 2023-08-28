@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://5b0n80sh8yyu"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_jsk5x"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/base/range/esl_range.gd" id="2_hifpw"]
+
+[node name="ESLRange" instance=ExtResource("1_jsk5x")]
+script = ExtResource("2_hifpw")
+save_debounce_time_sec = 1.0

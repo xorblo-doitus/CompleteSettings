@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4g6uon00f8jt"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_iy50d"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/base/base_button/esl_base_button.gd" id="2_mhkdw"]
+
+[node name="ESLBaseButton" instance=ExtResource("1_iy50d")]
+script = ExtResource("2_mhkdw")

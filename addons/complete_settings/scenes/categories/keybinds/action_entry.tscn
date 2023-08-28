@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwhxncugpvkhv"]
+
+[ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="1_aql6j"]
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/keybinds/action_entry.gd" id="2_rr7kd"]
+[ext_resource type="PackedScene" uid="uid://bqptyqtakvwl7" path="res://addons/keybind_remap/input_mapper/input_mapper.tscn" id="3_15a7y"]
+[ext_resource type="Texture2D" uid="uid://dgw0fy3w5f31y" path="res://addons/complete_settings/scenes/categories/keybinds/add.svg" id="4_gi4sx"]
+
+[node name="SettingEntry" instance=ExtResource("1_aql6j")]
+script = ExtResource("2_rr7kd")
+action_name = &""
+input_idx = 0
+
+[node name="InputMapper" parent="." index="1" instance=ExtResource("3_15a7y")]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="." index="2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("4_gi4sx")
+
+[connection signal="pressed" from="AddButton" to="." method="_on_add_button_pressed"]

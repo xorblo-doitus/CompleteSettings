@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://nrufgm4mlw30"]
+
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/icon/icon.gd" id="1_v6hxb"]
+
+[node name="Icon" type="HBoxContainer"]
+offset_right = 732.0
+offset_bottom = 375.0
+alignment = 2
+script = ExtResource("1_v6hxb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+stretch_mode = 3

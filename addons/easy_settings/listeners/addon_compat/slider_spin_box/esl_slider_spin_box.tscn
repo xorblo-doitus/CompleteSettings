@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cukv8au8l4xnm"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_x2e4g"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/addon_compat/slider_spin_box/esl_slider_spin_box.gd" id="2_dcco0"]
+
+[node name="ESLSliderSpinBox" instance=ExtResource("1_x2e4g")]
+script = ExtResource("2_dcco0")
+save_debounce_time_sec = 1.0

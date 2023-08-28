@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dicmjv5wn0pd6"]
+
+[ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="1_8scvk"]
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/video/window_mode.gd" id="2_1vas3"]
+[ext_resource type="PackedScene" uid="uid://np18311ppboh" path="res://addons/easy_settings/listeners/base/option_button/esl_option_button.tscn" id="2_07xot"]
+
+[node name="SettingEntry" instance=ExtResource("1_8scvk")]
+script = ExtResource("2_1vas3")
+setting_name = "WINDOW_MODE"
+
+[node name="Label" parent="." index="0"]
+text = "WINDOW_MODE"
+
+[node name="OptionButton" type="OptionButton" parent="." index="1"]
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "WINDOWED"
+popup/item_0/id = 0
+popup/item_1/text = "FULLSCREEN"
+popup/item_1/id = 3
+popup/item_2/text = "EXCLUSIVE_FULLSCREEN"
+popup/item_2/id = 4
+popup/item_3/text = "MAXIMIZED"
+popup/item_3/id = 2
+popup/item_4/text = "MINIMIZED"
+popup/item_4/id = 1
+
+[node name="ESLOptionButton" parent="OptionButton" index="1" node_paths=PackedStringArray("option_button") instance=ExtResource("2_07xot")]
+option_button = NodePath("..")
+save_index = false
+setting = "display/window/size/mode"
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

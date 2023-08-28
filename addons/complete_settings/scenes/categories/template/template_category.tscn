@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmayp4du8pkmc"]
+
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/category.gd" id="1_xck30"]
+
+[node name="TemplatCategory" type="Control" node_paths=PackedStringArray("setting_list", "collapse_all_button", "expand_all_button", "search_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xck30")
+setting_list = NodePath("MarginContainer/Layout/ScrollContainer/SettingList")
+collapse_all_button = NodePath("MarginContainer/Layout/TopBar/CollapseAll")
+expand_all_button = NodePath("MarginContainer/Layout/TopBar/ExpandAll")
+search_bar = NodePath("MarginContainer/Layout/TopBar/SearchBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginMedium"
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Layout"]
+layout_mode = 2
+
+[node name="SearchBar" type="LineEdit" parent="MarginContainer/Layout/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "SEARCH"
+
+[node name="CollapseAll" type="Button" parent="MarginContainer/Layout/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "COLLAPSE_ALL"
+
+[node name="ExpandAll" type="Button" parent="MarginContainer/Layout/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "EXPAND_ALL"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"SettingsScrollContainer"
+
+[node name="SettingList" type="VBoxContainer" parent="MarginContainer/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Layout"]
+layout_mode = 2

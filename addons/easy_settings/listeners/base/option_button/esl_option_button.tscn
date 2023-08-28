@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://np18311ppboh"]
+
+[ext_resource type="PackedScene" uid="uid://bej7sviukngcq" path="res://addons/easy_settings/listeners/base/esl.tscn" id="1_ogkyp"]
+[ext_resource type="Script" path="res://addons/easy_settings/listeners/base/option_button/esl_option_button.gd" id="2_sq4rd"]
+
+[node name="ESLOptionButton" instance=ExtResource("1_ogkyp")]
+script = ExtResource("2_sq4rd")
+save_index = true

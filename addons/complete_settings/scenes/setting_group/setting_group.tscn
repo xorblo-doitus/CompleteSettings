@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://we3a300cvpef"]
+
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/setting_group/setting_group.gd" id="1_u7im1"]
+[ext_resource type="Texture2D" uid="uid://xfudca1ihc0m" path="res://addons/complete_settings/scenes/setting_group/icons/expand.svg" id="2_h2ywn"]
+[ext_resource type="Texture2D" uid="uid://d2bg5iml3mtop" path="res://addons/complete_settings/scenes/setting_group/icons/collapse.svg" id="3_kdcjw"]
+[ext_resource type="Texture2D" uid="uid://b6kfsy5ugcal6" path="res://addons/complete_settings/scenes/setting_group/icons/tree_branch.svg" id="4_56j7p"]
+
+[node name="SettingGroup" type="VBoxContainer"]
+offset_bottom = 26.0
+size_flags_horizontal = 3
+script = ExtResource("1_u7im1")
+expand_texture = ExtResource("2_h2ywn")
+collapse_texture = ExtResource("3_kdcjw")
+tree_branch_texture = ExtResource("4_56j7p")
+
+[connection signal="sort_children" from="." to="." method="_on_sort_children"]

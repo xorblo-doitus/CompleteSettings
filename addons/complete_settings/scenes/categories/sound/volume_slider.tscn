@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bstutcmv7476s"]
+
+[ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="1_8lgo5"]
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/sound/volume_slider.gd" id="2_xixfs"]
+[ext_resource type="PackedScene" uid="uid://ci8tse6hjy3ye" path="res://addons/slider_spin_box/v_slider_spin_box.tscn" id="3_2lspb"]
+[ext_resource type="PackedScene" uid="uid://cukv8au8l4xnm" path="res://addons/easy_settings/listeners/addon_compat/slider_spin_box/esl_slider_spin_box.tscn" id="4_esrwy"]
+
+[node name="VolumeSlider" instance=ExtResource("1_8lgo5")]
+script = ExtResource("2_xixfs")
+
+[node name="SliderSpinBox" parent="." index="1" instance=ExtResource("3_2lspb")]
+layout_mode = 2
+
+[node name="SpinBox" parent="SliderSpinBox" index="0"]
+max_value = 200.0
+suffix = "%"
+
+[node name="Slider" parent="SliderSpinBox" index="1"]
+max_value = 200.0
+
+[node name="ESLSliderSpinBox" parent="." index="2" node_paths=PackedStringArray("slider_spin_box") instance=ExtResource("4_esrwy")]
+slider_spin_box = NodePath("../SliderSpinBox")
+sync = 0
+start_synced = false
+
+[connection signal="value_changed" from="SliderSpinBox" to="." method="_on_slider_spin_box_value_changed"]
+
+[editable path="SliderSpinBox"]

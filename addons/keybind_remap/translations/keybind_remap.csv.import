@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bhct3oxyfepbm"
+
+[deps]
+
+files=["res://addons/keybind_remap/translations/keybind_remap.en.translation", "res://addons/keybind_remap/translations/keybind_remap.fr.translation"]
+
+source_file="res://addons/keybind_remap/translations/keybind_remap.csv"
+dest_files=["res://addons/keybind_remap/translations/keybind_remap.en.translation", "res://addons/keybind_remap/translations/keybind_remap.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=3 uid="uid://fpjnjbm2uirc"]
+
+[ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="1_ui6ps"]
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/sound/sound_category.gd" id="2_40hl2"]
+[ext_resource type="PackedScene" uid="uid://bstutcmv7476s" path="res://addons/complete_settings/scenes/categories/sound/volume_slider.tscn" id="3_3qo0c"]
+[ext_resource type="PackedScene" uid="uid://we3a300cvpef" path="res://addons/complete_settings/scenes/setting_group/setting_group.tscn" id="4_uho15"]
+
+[node name="SETTING_CATEGORY_SOUND" instance=ExtResource("1_ui6ps")]
+script = ExtResource("2_40hl2")
+packed_volume_slider = ExtResource("3_3qo0c")
+packed_setting_group = ExtResource("4_uho15")

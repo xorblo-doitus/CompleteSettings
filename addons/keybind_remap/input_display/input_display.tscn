@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcjp53yyqfql7"]
+
+[ext_resource type="Script" path="res://addons/keybind_remap/input_display/input_display.gd" id="1_amqmx"]
+[ext_resource type="Texture2D" uid="uid://clklp7l0gqcje" path="res://addons/ActionIcon/Keyboard/Blank.png" id="2_fx1yy"]
+[ext_resource type="Script" path="res://addons/keybind_remap/input_icon/input_icon.gd" id="2_xunvw"]
+[ext_resource type="Texture2D" uid="uid://d2loxav2xn0ix" path="res://addons/keybind_remap/input_display/physical_icon.svg" id="3_82u8x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jvnu"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.74902)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="InputDisplay" type="HBoxContainer"]
+script = ExtResource("1_amqmx")
+focus_style_box = SubResource("StyleBoxFlat_6jvnu")
+
+[node name="Modifiers" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="InputIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_fx1yy")
+script = ExtResource("2_xunvw")
+
+[node name="PhysicalIcon" type="TextureRect" parent="InputIcon"]
+modulate = Color(1, 1, 1, 0.74902)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.56
+anchor_right = 1.0
+anchor_bottom = 0.44
+offset_top = 3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "PHYSICAL_TOOLTIP"
+texture = ExtResource("3_82u8x")
+expand_mode = 1
+
+[node name="TrueKey" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FallbackLabel" type="Label" parent="."]
+layout_mode = 2
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="input_changed" from="InputIcon" to="." method="_on_input_icon_input_changed"]
