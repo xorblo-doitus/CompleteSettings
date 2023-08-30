@@ -205,7 +205,9 @@ func _update_spacings() -> void:
 	# Find spacing
 	_open_button.custom_minimum_size.x = 0
 	_open_button.size.x = 0
-	var new_sub_spacing = _spacing + _open_button.size.x + _primary_entry.get_theme_constant("separation")
+	var new_sub_spacing = _spacing + _open_button.size.x
+	if _spacing: # Don't add separation when not in a group
+		new_sub_spacing += _primary_entry.get_theme_constant("separation")
 	
 	for idx in len(_entries): # not range(1, len), just in case of empty _entries
 		if idx == 0:
