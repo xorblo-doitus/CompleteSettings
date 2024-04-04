@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func get_value() -> Variant:
-	return EasySettings.get_value(setting)
+	return EasySettings.get_setting(setting)
 
 
 ## [b][Virtual][/b] Method called when the setting is modified by an external source,

@@ -48,7 +48,7 @@ func _ready() -> void:
 
 
 ## [b][Virtual][/b] Method called to get the value. It should return the right type of value.
-func get_value():
+func get_value() -> Variant:
 	return null
 
 
