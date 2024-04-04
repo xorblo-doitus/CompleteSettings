@@ -108,7 +108,7 @@ func display(event: InputEvent) -> void:
 				
 				var true_key_display:  = InputIcon.new()
 				true_key_display.input_event = true_event
-				
+				true_key_display.force_refresh()
 				true_key.add_child(true_key_display)
 				
 				new_label = Label.new()
