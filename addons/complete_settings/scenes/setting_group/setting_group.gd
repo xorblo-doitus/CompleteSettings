@@ -1,5 +1,5 @@
 #@tool
-extends VBoxContainer
+extends VBoxContainerWithLines
 class_name SettingGroup
 
 
@@ -104,11 +104,16 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	super()
 	# trigger setters
 	left_line_color = left_line_color
 
 
 func _draw() -> void:
+	if open and len(_icons) >= 2:
+		line_margin_x = _icons[1].get_global_rect().end.x - get_global_rect().position.x
+		super()
+	
 	if left_line_width and open and len(_icons) > 2:
 		draw_line(
 			_get_line_pos_at_icon(_icons[1]),

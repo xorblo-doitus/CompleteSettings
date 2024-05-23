@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmayp4du8pkmc"]
+[gd_scene load_steps=3 format=3 uid="uid://dmayp4du8pkmc"]
 
 [ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/category.gd" id="1_xck30"]
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/categories/v_box_container_with_lines.gd" id="2_nxlv7"]
 
 [node name="TemplatCategory" type="Control" node_paths=PackedStringArray("setting_list", "collapse_all_button", "expand_all_button", "search_bar")]
 layout_mode = 3
@@ -55,6 +56,7 @@ theme_type_variation = &"SettingsScrollContainer"
 [node name="SettingList" type="VBoxContainer" parent="MarginContainer/Layout/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_nxlv7")
 
 [node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Layout"]
 layout_mode = 2
