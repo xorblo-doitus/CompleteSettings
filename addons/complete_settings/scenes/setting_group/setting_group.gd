@@ -111,7 +111,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	if open and len(_icons) >= 2:
-		line_margin_x = _icons[1].get_global_rect().end.x - get_global_rect().position.x
+		line_margin_start = _icons[1].get_global_rect().end.x - get_global_rect().position.x
 		super()
 	
 	if left_line_width and open and len(_icons) > 2:

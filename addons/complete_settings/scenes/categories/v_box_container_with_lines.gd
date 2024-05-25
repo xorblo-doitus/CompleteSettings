@@ -5,11 +5,11 @@ extends VBoxContainer
 
 var line_margin: float:
 	set(new):
-		line_margin_x = new
-		line_margin_y = new
+		line_margin_start = new
+		line_margin_end = new
 
-var line_margin_x: float = 0
-var line_margin_y: float = 0
+var line_margin_start: float = 0
+var line_margin_end: float = 0
 
 
 func _ready() -> void:
@@ -30,5 +30,5 @@ func _draw() -> void:
 	for i in children.size() - 1:
 		depth += children[i].size.y
 		var line_y: float = depth + 0.5 * get_theme_constant(&"separation")
-		draw_line(Vector2(line_margin_x, line_y), Vector2(size.x - line_margin_y, line_y), Color(1, 1, 1, 0.4))
+		draw_line(Vector2(line_margin_start, line_y), Vector2(size.x - line_margin_end, line_y), Color(1, 1, 1, 0.4))
 		depth += get_theme_constant(&"separation")
