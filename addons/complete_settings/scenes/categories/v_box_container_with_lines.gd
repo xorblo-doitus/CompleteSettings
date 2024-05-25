@@ -28,5 +28,7 @@ func _draw() -> void:
 	
 	var depth: float = 0
 	for i in children.size() - 1:
-		depth += children[i].size.y + get_theme_constant(&"separation") / 2.0
-		draw_line(Vector2(line_margin_x, depth), Vector2(size.x - line_margin_y, depth), Color.WHITE)
+		depth += children[i].size.y
+		var line_y: float = depth + 0.5 * get_theme_constant(&"separation")
+		draw_line(Vector2(line_margin_x, line_y), Vector2(size.x - line_margin_y, line_y), Color.WHITE)
+		depth += get_theme_constant(&"separation")
