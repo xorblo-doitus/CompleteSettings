@@ -1,2 +1,1 @@
-- [x] Add line guides to help see wich name goes with wich value.
-- [ ] Rework setting category, so that adding setting entries as child is enough to add them down to the VBoxContainer
+- [ ] Nothing

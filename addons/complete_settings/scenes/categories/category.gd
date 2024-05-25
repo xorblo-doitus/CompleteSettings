@@ -1,9 +1,18 @@
-extends Control
+@tool
+extends Container
 class_name SettingCategory
 
 
 ## A tab for settings.
+##
 ## Inludes utilities like searching and collapsinging/expand all.
+## [b]Warning:[/b] Setting entries added as direct child trough editor will
+## have their modulate's alpha value reset to 1 if set near to
+## [constant EDITOR_PREVIEW_HINDING_ALPHA] as a result of editor preview
+## side effect.
+
+
+const EDITOR_PREVIEW_HINDING_ALPHA = 0.5**14+0.5**15
 
 
 ## If different from empty string, the search will take this locale into account
@@ -55,6 +64,11 @@ class_name SettingCategory
 func _ready() -> void:
 	if setting_list == null:
 		push_warning("Setting list is null.")
+	else:
+		#child_entered_tree.connect(_handle_child)
+		pre_sort_children.connect(_handle_children)
+		if Engine.is_editor_hint():
+			child_exiting_tree.connect(_clean_up_external_control)
 
 
 func clear_setting_list() -> void:
@@ -199,3 +213,81 @@ static func _levenshtein_distance(str1: String, str2: String) -> int:
 	
 	# Result is in the bottom-right corner
 	return matrix[-1][-1]
+
+
+func _handle_children() -> void:
+	for child in get_children():
+		_handle_child(child)
+
+
+func _handle_child(child: Node) -> void:
+	if not child is Control:
+		return
+	
+	if child.owner == self:
+		_handle_true_child_control(child)
+	else:
+		_handle_external_child_control(child)
+
+
+func _handle_true_child_control(control: Control) -> void:
+	var rect: Rect2 = control.get_rect()
+	
+	if control.size_flags_horizontal & SIZE_EXPAND_FILL:
+		rect.position.x = 0
+		rect.end.x = size.x
+	if control.size_flags_vertical & SIZE_EXPAND_FILL:
+		rect.position.y = 0
+		rect.end.y = size.y
+	
+	if rect != control.get_rect():
+		fit_child_in_rect(control, rect)
+
+
+func _handle_external_child_control(control: Control) -> void:
+	if Engine.is_editor_hint():
+		_editor_preview_external_child_control(control)
+		print(control)
+		return
+	else:
+		control.reparent(setting_list, false)
+		_apply_backed_up_alpha_if_necessary(control)
+
+
+var _editor_preview_clones: Dictionary = {}
+func _editor_preview_external_child_control(control: Control) -> void:
+	if control in _editor_preview_clones:
+		_editor_preview_clones[control].queue_free()
+	
+	var clone: Control = control.duplicate()
+	_editor_preview_clones[control] = clone
+	
+	if not is_equal_approx(control.modulate.a, EDITOR_PREVIEW_HINDING_ALPHA):
+		control.set_meta(&"_setting_category_editor_backed_up_alpha", control.modulate.a)
+	control.modulate.a = EDITOR_PREVIEW_HINDING_ALPHA
+	clone.modulate.a = _get_backed_up_alpha(control)
+	
+	setting_list.add_child(clone)
+
+
+func _clean_up_external_control(control: Control) -> void:
+	if control in _editor_preview_clones:
+		_editor_preview_clones[control].queue_free()
+		_editor_preview_clones.erase(control)
+	_apply_backed_up_alpha_if_necessary(control)
+	control.remove_meta(&"_setting_category_editor_backed_up_alpha")
+
+
+func _apply_backed_up_alpha_if_necessary(node: Node) -> void:
+	# KEEPME (This condition prevent loosing alpha when no editor preview
+	# was performed after editing modulate.a)
+	if is_equal_approx(node.modulate.a, EDITOR_PREVIEW_HINDING_ALPHA):
+		node.modulate.a = _get_backed_up_alpha(node)
+		node.remove_meta(&"_setting_category_editor_backed_up_alpha")
+
+
+func _get_backed_up_alpha(node: Node) -> float:
+	if node.has_meta(&"_setting_category_editor_backed_up_alpha"):
+		return node.get_meta(&"_setting_category_editor_backed_up_alpha")
+	
+	return 1 

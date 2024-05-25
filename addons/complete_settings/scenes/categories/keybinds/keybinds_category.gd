@@ -40,6 +40,7 @@ signal tree_created()
 
 
 func _ready() -> void:
+	super()
 	create_tree()
 
 

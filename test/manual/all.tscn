@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c75dajjgw0tus"]
+[gd_scene load_steps=7 format=3 uid="uid://c75dajjgw0tus"]
 
 [ext_resource type="Theme" uid="uid://d4dmxjv5l13r7" path="res://addons/complete_settings/scenes/settings/example_theme.tres" id="1_ii8xy"]
 [ext_resource type="PackedScene" uid="uid://fpjnjbm2uirc" path="res://addons/complete_settings/scenes/categories/sound/sound_category.tscn" id="2_ot5vh"]
+[ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="2_qpa26"]
 [ext_resource type="PackedScene" uid="uid://cacfv61munwfy" path="res://addons/complete_settings/scenes/categories/keybinds/keybinds_category.tscn" id="3_fclki"]
 [ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="4_e3vjl"]
 [ext_resource type="PackedScene" uid="uid://we3a300cvpef" path="res://addons/complete_settings/scenes/setting_group/setting_group.tscn" id="5_soast"]
@@ -27,7 +28,66 @@ theme_type_variation = &"MarginWholeScreen"
 [node name="TabContainer" type="TabContainer" parent="ScreenMargin"]
 layout_mode = 2
 
+[node name="TemplateCategory" parent="ScreenMargin/TabContainer" instance=ExtResource("2_qpa26")]
+layout_mode = 2
+
+[node name="SettingEntry" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry2" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry3" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry4" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry5" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry6" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry7" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry8" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry9" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry10" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry11" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
 [node name="SETTING_CATEGORY_SOUND" parent="ScreenMargin/TabContainer" instance=ExtResource("2_ot5vh")]
+visible = false
 layout_mode = 2
 
 [node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/TabContainer" instance=ExtResource("3_fclki")]

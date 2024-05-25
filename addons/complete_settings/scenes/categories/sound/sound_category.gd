@@ -14,6 +14,7 @@ var buses: Dictionary = {}
 
 
 func _ready() -> void:
+	super()
 	fetch_buses()
 
 
