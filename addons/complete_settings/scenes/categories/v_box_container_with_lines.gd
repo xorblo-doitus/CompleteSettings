@@ -30,5 +30,5 @@ func _draw() -> void:
 	for i in children.size() - 1:
 		depth += children[i].size.y
 		var line_y: float = depth + 0.5 * get_theme_constant(&"separation")
-		draw_line(Vector2(line_margin_x, line_y), Vector2(size.x - line_margin_y, line_y), Color.WHITE)
+		draw_line(Vector2(line_margin_x, line_y), Vector2(size.x - line_margin_y, line_y), Color(1, 1, 1, 0.4))
 		depth += get_theme_constant(&"separation")
