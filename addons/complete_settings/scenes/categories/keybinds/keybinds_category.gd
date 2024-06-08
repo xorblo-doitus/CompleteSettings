@@ -14,6 +14,8 @@ signal tree_created()
 @export var packed_action_entry: PackedScene = preload("res://addons/complete_settings/scenes/categories/keybinds/action_entry.tscn")
 @export var packed_keybind_mapper: PackedScene = preload("res://addons/complete_settings/scenes/categories/keybinds/keybind_entry.tscn")
 
+## If true, will collapse all on ready
+@export var collapsed_by_default: bool = true
 
 @export var alternative_event_names: Array[String] = [
 	"PRIMARY_KEYBIND",
@@ -42,6 +44,9 @@ signal tree_created()
 func _ready() -> void:
 	super()
 	create_tree()
+	
+	if collapsed_by_default:
+		collapse_all()
 
 
 func create_tree() -> void:

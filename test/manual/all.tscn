@@ -77,6 +77,7 @@ layout_mode = 2
 [node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/TabContainer" instance=ExtResource("3_fclki")]
 visible = false
 layout_mode = 2
+collapsed_by_default = true
 
 [node name="ExempleSettingCategory" type="ScrollContainer" parent="ScreenMargin/TabContainer"]
 visible = false
