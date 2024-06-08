@@ -7,6 +7,8 @@ content_margin_right = 16.0
 content_margin_bottom = 16.0
 
 [resource]
+KeybindsVBoxContainer/base_type = &"SettingsVBoxContainer"
+KeybindsVBoxContainer/constants/separation = 32
 MarginMedium/constants/margin_bottom = 16
 MarginMedium/constants/margin_left = 16
 MarginMedium/constants/margin_right = 16
@@ -17,3 +19,4 @@ MarginWholeScreen/constants/margin_right = 50
 MarginWholeScreen/constants/margin_top = 50
 SettingsScrollContainer/base_type = &"ScrollContainer"
 SettingsScrollContainer/styles/panel = SubResource("StyleBoxEmpty_00o37")
+SettingsVBoxContainer/base_type = &"VBoxContainer"

@@ -52,6 +52,7 @@ theme_type_variation = &"SettingsScrollContainer"
 [node name="SettingList" type="VBoxContainer" parent="MarginContainer/Layout/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"SettingsVBoxContainer"
 script = ExtResource("2_nxlv7")
 
 [node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Layout"]
