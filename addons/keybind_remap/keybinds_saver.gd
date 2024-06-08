@@ -2,15 +2,18 @@ extends Object
 class_name KeybindsSaver
 
 
-## This static class let save keybinds trough JSON
+## This class let save keybinds trough JSON.
 ##
+## Using [member shared] as a singleton is enough for common use cases.
+## You shouldn't have to instantiate this class on your own.
+## [br][br]
 ## You should call [method set_current_mapping_as_default] before loading or modifying
 ## any keybind.
 ## [br][br]
 ## Why JSON?
 ## [br][br]
 ## This is using JSON over Godot's serialization to let players share their keybinds
-## without risking a script injection. (Godot's serialized objects can contain script)
+## without risking a script injection. (Godot's serialized objects can contain scripts)
 
 
 const built_in_actions: Array[StringName] = [
@@ -93,31 +96,41 @@ const built_in_actions: Array[StringName] = [
 ]
 
 
+## The main instance of the [KeybindsSaver]. Use it as a singleton.
+## This get initialized only if accessed.
+static var shared: KeybindsSaver:
+	get:
+		if not shared:
+			shared = KeybindsSaver.new()
+		
+		return shared
+
+
 ## Default ignored action when calling [method save_keybinds].
-static var default_ignored_actions: Array[StringName] = built_in_actions
+var ignored_actions: Array[StringName] = built_in_actions
 ## Default save file path when calling [method save_keybinds].
-static var default_path: String = "user://keybinds/custom.json"
+var default_save_path: String = "user://keybinds/custom.json"
 
 ## If true, only actions that where modified will be saved. Make sure to call
 ## [method set_action_as_modified] when modifying an action.
-static var only_save_modified_actions: bool = true
+var only_save_modified_actions: bool = true
 ## Actions that where marked as modified.
-static var modified_actions: Array[StringName] = []
+var modified_actions: Array[StringName] = []
 
 
-static var _default_actions: Dictionary = {}
-static var _bulk_remap: bool = false
-static var _bulk_remap_saved_input_map: Dictionary = {}
+var _default_input_map: Dictionary = {}
+var _bulk_remap: bool = false
+var _bulk_remap_saved_input_map: Dictionary = {}
 
 
 ## Set an action as modified, so it will be saved in case [member only_save_modified_actions] is true.
-static func set_action_as_modified(action: StringName) -> void:
+func set_action_as_modified(action: StringName) -> void:
 	if action not in modified_actions:
 		modified_actions.push_back(action)
 
 
 ## Remove [param action] from modified actions, usefull if you reseted it back to default.
-static func set_action_as_unmodified(action: StringName) -> void:
+func set_action_as_unmodified(action: StringName) -> void:
 	modified_actions.erase(action)
 
 
@@ -125,70 +138,86 @@ static func set_action_as_unmodified(action: StringName) -> void:
 ## Call [method reset] or [method reset_all] to load default actions.
 ## [br][br]
 ## It's a good idea to call this before loading any keybinds file.
-static func set_current_mapping_as_default() -> void:
-	_default_actions.clear()
-	
-	for action in InputMap.get_actions():
-		var events: Array[InputEvent] = []
-		
-		for event in InputMap.action_get_events(action):
-			events.push_back(event.duplicate())
-		
-		_default_actions[action] = events
+func set_current_mapping_as_default() -> void:
+	# TODO use another instance with semi-synced attibutes instead.
+	var start_only_save_modified_actions: bool = only_save_modified_actions
+	only_save_modified_actions = false
+	_default_input_map = _save_input_map()
+	only_save_modified_actions = start_only_save_modified_actions
+
+
+## Remove all actions from the input map,
+## even [member ignored_actions] if [param clear_ignored_actions is true.
+func clear_input_map(clear_ignored_actions: bool = false) -> void:
+	if clear_ignored_actions:
+		for action in InputMap.get_actions():
+			InputMap.erase_action(action)
+	else:
+		for action in InputMap.get_actions():
+			if action not in ignored_actions:
+				InputMap.erase_action(action)
 
 
 ## Reset an action back to it's orginal keybinds. See [method set_current_mapping_as_default]
-static func reset(action: StringName) -> void:
-	if action not in _default_actions:
-		return
+func reset(action: StringName) -> void:
+	if action in _default_input_map:
+		_load_action(action, _default_input_map[action])
+	else:
+		InputMap.erase_action(action)
 	
 	set_action_as_unmodified(action)
-	
-	InputMap.action_erase_events(action)
-	for event in _default_actions[action]:
-		InputMap.action_add_event(action, event.duplicate())
 
 
 ## Call [method reset] for all actions that have defaults. See [method set_current_mapping_as_default]
-static func reset_all() -> void:
-	for action in _default_actions:
-		reset(action)
+func reset_all() -> void:
+	_load_input_map(_default_input_map, _InputMapLoadingReset.NONE)
+	modified_actions.clear()
 
 
-static func get_default_event(action: StringName, idx: int) -> InputEvent:
-	var events: Array[InputEvent] = []
-	events = _default_actions.get(action, events) # Workaround for typed event creation
+func get_default_event(action: StringName, idx: int) -> InputEvent:
+	if action not in _default_input_map:
+		return null
+	
+	var events: Array[Dictionary] = _default_input_map[action].slice(1)
 	
 	if -len(events) > idx or idx >= len(events):
 		return null
 	
-	return events[idx]
+	return _load_event(events[idx])
+
+
+func get_default_dead_zone(action: StringName) -> float:
+	for event in _default_input_map.get(action, []):
+		if event.get(&"class", &"") == &"action_properties":
+			return event.get(&"dead_zone", 0.5)
+	
+	return 0.5
 
 
 ## Turn on bulk remapping.
 ## During bulk remapping, [method save_keybinds] do nothing.
 ## Calling this method while bulk remapping will do nothing.
 ## Use [method validate_bulk_remap] or [method cancel_bulk_remap] to exit this mode.
-static func begin_bulk_remap() -> void:
+func begin_bulk_remap() -> void:
 	_bulk_remap = true
-	_bulk_remap_saved_input_map = _save_input_map(default_ignored_actions)
+	_bulk_remap_saved_input_map = _save_input_map()
 
 
 ## See [method begin_bulk_remap].
-static func is_bulk_remapping() -> bool:
+func is_bulk_remapping() -> bool:
 	return _bulk_remap
 
 
 ## Exit bulk remapping mode.
 ## If [param save] is true, keybinds will be saved with default parameters.
-static func validate_bulk_remap(save: bool = true) -> void:
+func validate_bulk_remap(save: bool = true) -> void:
 	_bulk_remap = false
 	if save:
 		save_keybinds()
 	_bulk_remap_saved_input_map = {}
 
 
-static func cancel_bulk_remap() -> void:
+func cancel_bulk_remap() -> void:
 	_bulk_remap = false
 	_load_input_map(_bulk_remap_saved_input_map)
 	_bulk_remap_saved_input_map = {}
@@ -197,11 +226,11 @@ static func cancel_bulk_remap() -> void:
 ## Save keybinds to a file. 
 ## If [member only_save_modified_actions] is true: Make sur to call [method set_action_as_modified].
 ## If in bulk remapping mode, this method does nothing.
-static func save_keybinds(path: String = default_path, ignored_actions: Array[StringName] = default_ignored_actions) -> void:
+func save_keybinds(path: String = default_save_path) -> void:
 	if _bulk_remap:
 		return
 	
-	var saved_input_map := _save_input_map(ignored_actions)
+	var saved_input_map := _save_input_map()
 	
 	DirAccess.make_dir_recursive_absolute(path.get_base_dir())
 	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
@@ -214,7 +243,7 @@ static func save_keybinds(path: String = default_path, ignored_actions: Array[St
 	file.close()
 
 
-static func _save_input_map(ignored_actions: Array[StringName]) -> Dictionary:
+func _save_input_map() -> Dictionary:
 	var saved_input_map: Dictionary = {}
 	var current_actions := InputMap.get_actions()
 	
@@ -228,32 +257,37 @@ static func _save_input_map(ignored_actions: Array[StringName]) -> Dictionary:
 			if action in modified_actions:
 				was_modified = true
 			
-			if not action in _default_actions:
+			if action not in _default_input_map:
 				was_modified = true
-				
+			
+			if InputMap.action_get_deadzone(action) != get_default_dead_zone(action):
+				was_modified = true
+			
 			if not was_modified:
 				continue
 		
 		saved_input_map[action] = _save_action(action)
 	
-	## Was trying to add a way to save that an action was erased.
-	#for action in _default_actions:
-		#if not action in current_actions:
-			#data[action] = []
+	if only_save_modified_actions:
+		for action in _default_input_map:
+			if action not in current_actions and action not in ignored_actions:
+				saved_input_map[action] = [{
+					&"class": &"action_properties",
+					&"removed": true,
+				}]
 	
 	return saved_input_map
 
 
-static func _save_action(action: StringName) -> Array[Dictionary]:
+func _save_action(action: StringName) -> Array[Dictionary]:
 	var saved_action: Array[Dictionary]
 	
 	
-	if InputMap.action_get_deadzone(action) != 0.5:
-		var action_properties: Dictionary = {
-			&"class": &"action_properties",
-			&"dead_zone": InputMap.action_get_deadzone(action)
-		}
-		saved_action.append(action_properties)
+	var action_properties: Dictionary = {
+		&"class": &"action_properties",
+		&"dead_zone": InputMap.action_get_deadzone(action)
+	}
+	saved_action.append(action_properties)
 	
 	for event in InputMap.action_get_events(action):
 		saved_action.append(_save_event(event))
@@ -261,7 +295,7 @@ static func _save_action(action: StringName) -> Array[Dictionary]:
 	return saved_action
 
 
-static  func _save_event(event: InputEvent) -> Dictionary:
+func _save_event(event: InputEvent) -> Dictionary:
 	var saved_event: Dictionary = {}
 	
 	_save_property(saved_event, event, &"device", 0)
@@ -291,17 +325,16 @@ static  func _save_event(event: InputEvent) -> Dictionary:
 		saved_event[&"class"] = &"InputEventJoypadMotion"
 		_save_property(saved_event, event, &"axis", 0)
 		
-		
 	return saved_event
 
 
-static func _save_property(save: Dictionary, _object: Object, property: StringName, default: Variant) -> void:
+func _save_property(save: Dictionary, _object: Object, property: StringName, default: Variant) -> void:
 	if _object.get(property) != default:
 		save[property] = _object.get(property)
 
 
 ## Load keybinds from a file.
-static func load_keybinds(path: String = default_path) -> void:
+func load_keybinds(path: String = default_save_path) -> void:
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	if FileAccess.get_open_error():
 		_print_file_error(path)
@@ -317,14 +350,28 @@ static func load_keybinds(path: String = default_path) -> void:
 	_load_input_map(saved_input_map)
 
 
-static func _load_input_map(saved_input_map: Dictionary) -> void:
-	KeybindsSaver.reset_all()
+enum _InputMapLoadingReset {
+	## Don't reset
+	NONE,
+	## Reset to default input map
+	DEFAULT,
+	## Clear the input map
+	CLEAR,
+}
+
+func _load_input_map(saved_input_map: Dictionary, reset: _InputMapLoadingReset = _InputMapLoadingReset.DEFAULT) -> void:
+	match reset:
+		_InputMapLoadingReset.DEFAULT:
+			reset_all()
+		_InputMapLoadingReset.CLEAR:
+			clear_input_map()
 	
 	for action in saved_input_map:
 		_load_action(action, saved_input_map[action])
 
 
-static func _load_action(action: StringName, data: Array) -> void:
+
+func _load_action(action: StringName, data: Array) -> void:
 	if InputMap.has_action(action):
 		InputMap.action_erase_events(action)
 	else:
@@ -332,6 +379,9 @@ static func _load_action(action: StringName, data: Array) -> void:
 	
 	for event in data:
 		if event[&"class"] == &"action_properties":
+			if event.get(&"removed"):
+				InputMap.erase_action(action)
+				return
 			InputMap.action_set_deadzone(action, event.get(&"dead_zone", 0.5))
 		else:
 			InputMap.action_add_event(action, _load_event(event))
@@ -339,7 +389,7 @@ static func _load_action(action: StringName, data: Array) -> void:
 	set_action_as_modified(action)
 
 
-static func _load_event(event: Dictionary) -> InputEvent:
+func _load_event(event: Dictionary) -> InputEvent:
 	var new_event: InputEvent
 	
 	match event["class"]:
@@ -371,7 +421,7 @@ static func _load_event(event: Dictionary) -> InputEvent:
 	return new_event
 
 
-static func _load_property(save: Dictionary, _object: Object, property: StringName) -> void:
+func _load_property(save: Dictionary, _object: Object, property: StringName) -> void:
 	if save.has(property): # Could not be included if default
 		_object.set(property, save[property])
 
@@ -382,4 +432,3 @@ static func _print_file_error(path: String) -> void:
 		error_string(FileAccess.get_open_error()),
 		path,
 	]))
-

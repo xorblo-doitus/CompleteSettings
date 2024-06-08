@@ -26,7 +26,7 @@ static var _default_input_chooser: InputChooser
 		if default_input != null:
 			return default_input
 		
-		return KeybindsSaver.get_default_event(action_name, input_idx)
+		return KeybindsSaver.shared.get_default_event(action_name, input_idx)
 ## RESET_KEYBIND for default translation, tough default text is empty to display only the icon
 @export var reset_button_text: String:
 	set(new):
@@ -63,18 +63,18 @@ func choose(event: InputEvent, is_default: bool = false) -> void:
 		InputMap.action_add_event(action_name, action_event)
 	
 	if not is_default:
-		KeybindsSaver.set_action_as_modified(action_name)
+		KeybindsSaver.shared.set_action_as_modified(action_name)
 	
 	if is_inside_tree():
 		get_tree().call_group(&"action_icons", &"refresh")
 	elif input_chooser.is_inside_tree():
 		input_chooser.get_tree().call_group(&"action_icons", &"refresh")
 	
-	KeybindsSaver.save_keybinds()
+	KeybindsSaver.shared.save_keybinds()
 
 
 func reset() -> void:
-	KeybindsSaver.set_action_as_unmodified(action_name)
+	KeybindsSaver.shared.set_action_as_unmodified(action_name)
 	
 	if default_input != null:
 		choose(default_input, true)
