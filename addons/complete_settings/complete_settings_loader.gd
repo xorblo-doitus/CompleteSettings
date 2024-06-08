@@ -17,5 +17,5 @@ func _init() -> void:
 		)
 	
 	# Load keybinds
-	KeybindsSaver.set_current_mapping_as_default()
-	KeybindsSaver.load_keybinds()
+	KeybindsSaver.shared.set_current_mapping_as_default()
+	KeybindsSaver.shared.load_keybinds()

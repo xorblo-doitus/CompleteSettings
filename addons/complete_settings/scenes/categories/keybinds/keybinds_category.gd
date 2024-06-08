@@ -34,7 +34,7 @@ signal tree_created()
 @export var ignored_actions: Array[StringName]:
 	get:
 		if ignored_actions.is_empty():
-			return KeybindsSaver.default_ignored_actions
+			return KeybindsSaver.shared.ignored_actions
 		
 		return ignored_actions
 

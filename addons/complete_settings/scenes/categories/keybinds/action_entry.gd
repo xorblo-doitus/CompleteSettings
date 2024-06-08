@@ -4,6 +4,14 @@ extends "input_mapper_entry.gd"
 signal input_added()
 
 
+## Defaults to [member KeybindsSaver.shared]
+var keybinds_saver: KeybindsSaver:
+	get:
+		if keybinds_saver:
+			return keybinds_saver
+		return KeybindsSaver.shared
+
+
 @export var input_chooser: InputChooser:
 	get:
 		if input_chooser == null:
@@ -25,8 +33,8 @@ func choose_new_event() -> void:
 
 func add_event(new_event: InputEvent) -> void:
 	InputMap.action_add_event(action_name, new_event)
-	KeybindsSaver.set_action_as_modified(action_name)
-	KeybindsSaver.save_keybinds()
+	keybinds_saver.set_action_as_modified(action_name)
+	keybinds_saver.save_keybinds()
 	input_added.emit()
 
 
