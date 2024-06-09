@@ -32,7 +32,6 @@ layout_mode = 2
 [node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/TabContainer" instance=ExtResource("4_emvtm")]
 visible = false
 layout_mode = 2
-collapsed_by_default = true
 
 [node name="SETTING_CATEGORY_VIDEO" parent="ScreenMargin/TabContainer" instance=ExtResource("4_533ht")]
 visible = false

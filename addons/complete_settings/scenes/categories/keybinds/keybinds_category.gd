@@ -49,16 +49,30 @@ func _ready() -> void:
 		collapse_all()
 
 
+var _setting_groups: Dictionary = {}
 func create_tree() -> void:
-	for child in setting_list.get_children():
-		setting_list.remove_child(child)
-		child.queue_free()
+	for action in _setting_groups:
+		if not InputMap.has_action(action):
+			var setting_group: SettingGroup = _setting_groups[action]
+			_setting_groups.erase(action)
+			setting_list.remove_child(setting_group)
+			setting_group.queue_free()
 	
 	for action in InputMap.get_actions():
 		if action in ignored_actions:
 			continue
 		
-		var setting_group: SettingGroup = packed_setting_group.instantiate()
+		var setting_group: SettingGroup
+		
+		if action in _setting_groups:
+			setting_group = _setting_groups[action]
+			for setting_entry in setting_group._entries:
+				setting_group.remove_child(setting_entry)
+				setting_entry.queue_free()
+		else:
+			setting_group = packed_setting_group.instantiate()
+			_setting_groups[action] = setting_group
+			setting_list.add_child(setting_group)
 		
 		var current_input_mapper_entry: InputMapperEntry = packed_action_entry.instantiate()
 		current_input_mapper_entry.setup(
@@ -78,5 +92,3 @@ func create_tree() -> void:
 			)
 			current_input_mapper_entry.input_removed.connect(create_tree)
 			setting_group.add_child(current_input_mapper_entry)
-		
-		setting_list.add_child(setting_group)
