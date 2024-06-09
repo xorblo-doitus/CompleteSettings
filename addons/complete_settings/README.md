@@ -25,6 +25,8 @@ You can also just define translations for keys in the main translation file of y
 - MarginWholeScreen: Let define margin in pixels
 - MarginMedium: A medium margin around tab in the settings.
 - SettingsScrollContainer: The scroll container containing the setting list.
+- SettingsVBoxContainer: The vertical box container containing the setting list.
+  - KeybindsVBoxContainer: Sub-type specific to keybinds category (with higher separation on default theme for better readability)
 
 
 ## Godot version
