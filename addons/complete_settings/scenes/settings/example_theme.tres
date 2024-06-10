@@ -9,10 +9,12 @@ content_margin_bottom = 16.0
 [resource]
 KeybindsVBoxContainer/base_type = &"SettingsVBoxContainer"
 KeybindsVBoxContainer/constants/separation = 32
+MarginMedium/base_type = &"MarginContainer"
 MarginMedium/constants/margin_bottom = 16
 MarginMedium/constants/margin_left = 16
 MarginMedium/constants/margin_right = 16
 MarginMedium/constants/margin_top = 16
+MarginWholeScreen/base_type = &"MarginContainer"
 MarginWholeScreen/constants/margin_bottom = 50
 MarginWholeScreen/constants/margin_left = 50
 MarginWholeScreen/constants/margin_right = 50

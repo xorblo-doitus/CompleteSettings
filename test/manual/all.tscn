@@ -32,43 +32,59 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SettingEntry" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
 
 [node name="SettingEntry2" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
 
 [node name="SettingEntry3" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
 
 [node name="SettingEntry4" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
 
 [node name="SettingEntry5" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
 
 [node name="SettingEntry6" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
 
 [node name="SettingEntry7" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
 
 [node name="SettingEntry8" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
 
 [node name="SettingEntry9" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
 
 [node name="SettingEntry10" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
 
 [node name="SettingEntry11" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
 layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
 
 [node name="SETTING_CATEGORY_SOUND" parent="ScreenMargin/TabContainer" instance=ExtResource("2_ot5vh")]
 visible = false
