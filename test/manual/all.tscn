@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c75dajjgw0tus"]
+[gd_scene load_steps=8 format=3 uid="uid://c75dajjgw0tus"]
 
 [ext_resource type="Theme" uid="uid://d4dmxjv5l13r7" path="res://addons/complete_settings/scenes/settings/example_theme.tres" id="1_ii8xy"]
 [ext_resource type="PackedScene" uid="uid://fpjnjbm2uirc" path="res://addons/complete_settings/scenes/categories/sound/sound_category.tscn" id="2_ot5vh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cacfv61munwfy" path="res://addons/complete_settings/scenes/categories/keybinds/keybinds_category.tscn" id="3_fclki"]
 [ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="4_e3vjl"]
 [ext_resource type="PackedScene" uid="uid://we3a300cvpef" path="res://addons/complete_settings/scenes/setting_group/setting_group.tscn" id="5_soast"]
+[ext_resource type="PackedScene" uid="uid://bkl0ujm52n4hr" path="res://addons/complete_settings/scenes/categories/video/video_category.tscn" id="6_1mb7o"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -91,6 +92,10 @@ visible = false
 layout_mode = 2
 
 [node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/TabContainer" instance=ExtResource("3_fclki")]
+visible = false
+layout_mode = 2
+
+[node name="SETTING_CATEGORY_VIDEO" parent="ScreenMargin/TabContainer" instance=ExtResource("6_1mb7o")]
 visible = false
 layout_mode = 2
 
