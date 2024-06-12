@@ -1,3 +1,4 @@
+@tool
 extends SettingCategory
 
 ## A setting category wich automatically build volume sliders for current audio bus setup.
@@ -15,6 +16,10 @@ var buses: Dictionary = {}
 
 func _ready() -> void:
 	super()
+	
+	if Engine.is_editor_hint():
+		return
+	
 	fetch_buses()
 
 

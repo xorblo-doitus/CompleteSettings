@@ -1,3 +1,4 @@
+@tool
 extends SettingCategory
 
 
@@ -31,18 +32,17 @@ signal tree_created()
 ]
 @export var action_name_prefix: String = "ACTION_"
 ## Don't show keybind mapper for these actions.
-## If empty array, getter return [member KeybindsSaver.default_ignored_actions].
+## If empty array, [member KeybindsSaver.default_ignored_actions] is used.
 ## To ignore nothing, just add a StringName that is not the name of an action.
-@export var ignored_actions: Array[StringName]:
-	get:
-		if ignored_actions.is_empty():
-			return KeybindsSaver.shared.ignored_actions
-		
-		return ignored_actions
+@export var ignored_actions: Array[StringName]
 
 
 func _ready() -> void:
 	super()
+	
+	if Engine.is_editor_hint():
+		return
+	
 	create_tree()
 	
 	if collapsed_by_default:
@@ -59,7 +59,7 @@ func create_tree() -> void:
 			setting_group.queue_free()
 	
 	for action in InputMap.get_actions():
-		if action in ignored_actions:
+		if action in get_ignored_actions():
 			continue
 		
 		var setting_group: SettingGroup
@@ -92,3 +92,10 @@ func create_tree() -> void:
 			)
 			current_input_mapper_entry.input_removed.connect(create_tree)
 			setting_group.add_child(current_input_mapper_entry)
+
+
+func get_ignored_actions() -> Array[StringName]:
+	if ignored_actions.is_empty():
+		return KeybindsSaver.shared.ignored_actions
+	
+	return ignored_actions
