@@ -1,12 +1,16 @@
 key,en,fr
+SEARCH,Search,Rechercher
 EXPAND_ALL,Expand all,Tout développer
 COLLAPSE_ALL,Collapse all,Tout réduire
+CANCEL,Cancel,Annuler
+SETTINGS_CANCEL_TOOLTIP,Cancel settings' modifications,Annule les modifications apportées aux paramètres
+VALIDATE,Validate,Valider
+SETTINGS_VALIDATE_TOOLTIP,Save settings' modifications,Sauvegarde les modifications apportées aux paramètres
 SETTING_CATEGORY_SOUND,Audio,Audio
 SETTING_CATEGORY_KEYBINDS,Keybinds,Contrôles
 SETTING_CATEGORY_VIDEO,Video,Affichage
 _EMPTY,Empty setting folder,Dossier de paramètres vide
 _SUB_GROUP,Expand for more settings,Développer pour plus de paramètres
-SEARCH,Search,Rechercher
 PRIMARY_KEYBIND,Main,Principal
 SECONDARY_KEYBIND,Secondary,Secondaire
 TERTIARY_KEYBIND,Tertiary,Tertiaire

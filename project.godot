@@ -8,6 +8,10 @@
 
 config_version=5
 
+[addons]
+
+complete_settings/auto_initialize=true
+
 [application]
 
 config/name="CompleteSettings"
@@ -15,10 +19,6 @@ config/tags=PackedStringArray("addon")
 run/main_scene="res://test/manual/all.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[autoload]
-
-CompleteSettingsLoader="*res://addons/complete_settings/complete_settings_loader.gd"
 
 [display]
 

@@ -1,4 +1,16 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d4dmxjv5l13r7"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d4dmxjv5l13r7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ji8v2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00o37"]
 content_margin_left = 16.0
@@ -14,11 +26,7 @@ MarginMedium/constants/margin_bottom = 16
 MarginMedium/constants/margin_left = 16
 MarginMedium/constants/margin_right = 16
 MarginMedium/constants/margin_top = 16
-MarginWholeScreen/base_type = &"MarginContainer"
-MarginWholeScreen/constants/margin_bottom = 50
-MarginWholeScreen/constants/margin_left = 50
-MarginWholeScreen/constants/margin_right = 50
-MarginWholeScreen/constants/margin_top = 50
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ji8v2")
 SettingsScrollContainer/base_type = &"ScrollContainer"
 SettingsScrollContainer/styles/panel = SubResource("StyleBoxEmpty_00o37")
 SettingsVBoxContainer/base_type = &"VBoxContainer"

@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://c75dajjgw0tus"]
+[gd_scene load_steps=7 format=3 uid="uid://c75dajjgw0tus"]
 
 [ext_resource type="Theme" uid="uid://d4dmxjv5l13r7" path="res://addons/complete_settings/scenes/settings/example_theme.tres" id="1_ii8xy"]
-[ext_resource type="PackedScene" uid="uid://fpjnjbm2uirc" path="res://addons/complete_settings/scenes/categories/sound/sound_category.tscn" id="2_ot5vh"]
+[ext_resource type="PackedScene" uid="uid://gocrldq4i1bl" path="res://addons/complete_settings/scenes/settings/example.tscn" id="2_poagu"]
 [ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="2_qpa26"]
-[ext_resource type="PackedScene" uid="uid://cacfv61munwfy" path="res://addons/complete_settings/scenes/categories/keybinds/keybinds_category.tscn" id="3_fclki"]
 [ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="4_e3vjl"]
 [ext_resource type="PackedScene" uid="uid://we3a300cvpef" path="res://addons/complete_settings/scenes/setting_group/setting_group.tscn" id="5_soast"]
-[ext_resource type="PackedScene" uid="uid://bkl0ujm52n4hr" path="res://addons/complete_settings/scenes/categories/video/video_category.tscn" id="6_1mb7o"]
+
+[sub_resource type="GDScript" id="GDScript_3im46"]
+script/source = "extends Control
+
+
+func _ready() -> void:
+	$ScreenMargin/Settings.hide()
+"
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -16,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ii8xy")
+script = SubResource("GDScript_3im46")
 
 [node name="ScreenMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -24,162 +31,178 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"MarginWholeScreen"
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="TabContainer" type="TabContainer" parent="ScreenMargin"]
+[node name="Settings" parent="ScreenMargin" instance=ExtResource("2_poagu")]
 layout_mode = 2
 
-[node name="TemplateCategory" parent="ScreenMargin/TabContainer" instance=ExtResource("2_qpa26")]
-layout_mode = 2
+[node name="TabContainer" parent="ScreenMargin/Settings/VBoxContainer" index="0"]
+current_tab = 3
 
-[node name="SettingEntry" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 1.0
-
-[node name="SettingEntry2" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 1.0
-
-[node name="SettingEntry3" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 1.0
-
-[node name="SettingEntry4" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 1.0
-
-[node name="SettingEntry5" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 0.643137
-
-[node name="SettingEntry6" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 0.643137
-
-[node name="SettingEntry7" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 0.643137
-
-[node name="SettingEntry8" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 0.643137
-
-[node name="SettingEntry9" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 0.643137
-
-[node name="SettingEntry10" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 0.643137
-
-[node name="SettingEntry11" parent="ScreenMargin/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
-modulate = Color(1, 1, 1, 9.15527e-05)
-layout_mode = 2
-metadata/_setting_category_editor_backed_up_alpha = 1.0
-
-[node name="SETTING_CATEGORY_SOUND" parent="ScreenMargin/TabContainer" instance=ExtResource("2_ot5vh")]
+[node name="SETTING_CATEGORY_SOUND" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="1"]
 visible = false
+
+[node name="ExempleSettingCategory" type="ScrollContainer" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="4"]
 layout_mode = 2
 
-[node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/TabContainer" instance=ExtResource("3_fclki")]
-visible = false
-layout_mode = 2
-
-[node name="SETTING_CATEGORY_VIDEO" parent="ScreenMargin/TabContainer" instance=ExtResource("6_1mb7o")]
-visible = false
-layout_mode = 2
-
-[node name="ExempleSettingCategory" type="ScrollContainer" parent="ScreenMargin/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="SettingList" type="VBoxContainer" parent="ScreenMargin/TabContainer/ExempleSettingCategory"]
+[node name="SettingList" type="VBoxContainer" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="SettingEntry" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 tooltip_text = "TOol tip"
 setting_name = "azedazeaze"
 
-[node name="BigGroup" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList" instance=ExtResource("5_soast")]
+[node name="BigGroup" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList" instance=ExtResource("5_soast")]
 layout_mode = 2
 
-[node name="Alone" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
+[node name="Alone" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/Alone"]
+[node name="CheckBox" type="CheckBox" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/Alone"]
 layout_mode = 2
 
-[node name="SettingGroup2" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("5_soast")]
+[node name="SettingGroup2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(1, 0, 1, 1)
 
-[node name="1" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2" instance=ExtResource("4_e3vjl")]
+[node name="1" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 setting_name = "1"
 
-[node name="SettingGroup" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2" instance=ExtResource("5_soast")]
+[node name="SettingGroup" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(1, 1, 0, 1)
 
-[node name="SettingGroup2" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup" instance=ExtResource("5_soast")]
+[node name="SettingGroup2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(0, 1, 1, 1)
 
-[node name="SettingGroup3" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2" instance=ExtResource("5_soast")]
+[node name="SettingGroup3" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(1, 0, 1, 1)
 
-[node name="1" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3" instance=ExtResource("4_e3vjl")]
+[node name="1" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 setting_name = "1"
 
-[node name="SettingGroup" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3" instance=ExtResource("5_soast")]
+[node name="SettingGroup" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(1, 1, 0, 1)
 
-[node name="SettingGroup2" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3/SettingGroup" instance=ExtResource("5_soast")]
+[node name="SettingGroup2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3/SettingGroup" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(0, 1, 1, 1)
 
-[node name="2" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3" instance=ExtResource("4_e3vjl")]
+[node name="2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2/SettingGroup/SettingGroup2/SettingGroup3" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 setting_name = "2"
 
-[node name="2" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2" instance=ExtResource("4_e3vjl")]
+[node name="2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup2" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 setting_name = "2"
 
-[node name="SettingEntry" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 
-[node name="SettingEntry2" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 
-[node name="SettingGroup" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("5_soast")]
+[node name="SettingGroup" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("5_soast")]
 layout_mode = 2
 icon_modulate = Color(1, 0, 1, 1)
 
-[node name="SettingEntry3" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry3" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 
-[node name="SettingEntry4" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry4" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup/SettingGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 
-[node name="SettingEntry3" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry3" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
 
-[node name="SettingEntry4" parent="ScreenMargin/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
+[node name="SettingEntry4" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory/SettingList/BigGroup" instance=ExtResource("4_e3vjl")]
 layout_mode = 2
+
+[node name="TemplateCategory" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="5" instance=ExtResource("2_qpa26")]
+visible = false
+layout_mode = 2
+
+[node name="SettingEntry" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry2" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry3" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry4" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="SettingEntry5" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry6" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry7" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry8" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry9" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry10" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 0.643137
+
+[node name="SettingEntry11" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
+modulate = Color(1, 1, 1, 9.15527e-05)
+layout_mode = 2
+metadata/_setting_category_editor_backed_up_alpha = 1.0
+
+[node name="Open" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -35.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "~open~"
+
+[connection signal="pressed" from="Open" to="ScreenMargin/Settings" method="open"]
+
+[editable path="ScreenMargin/Settings"]

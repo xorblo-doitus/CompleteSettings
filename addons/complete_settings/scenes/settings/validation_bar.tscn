@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7d36yy26m5r4"]
+
+[ext_resource type="Script" path="res://addons/complete_settings/scenes/settings/validation_bar.gd" id="1_br4c5"]
+
+[node name="ValidationBar" type="HBoxContainer"]
+alignment = 2
+script = ExtResource("1_br4c5")
+
+[node name="Cancel" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "SETTINGS_CANCEL_TOOLTIP"
+text = "CANCEL"
+
+[node name="Apply" type="Button" parent="."]
+visible = false
+layout_mode = 2
+tooltip_text = "SETTINGS_APPLY_TOOLTIP"
+text = "APPLY"
+
+[node name="Validate" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "SETTINGS_VALIDATE_TOOLTIP"
+text = "VALIDATE"

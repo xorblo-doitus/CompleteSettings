@@ -11,7 +11,8 @@ the addon in `Project → Project Settings → Plugins`.
 
 ## Example
 
-An example setting menu can be found at `addons/complete_settings/scenes/settings/example.tscn`
+An example setting menu can be found at `addons/complete_settings/scenes/settings/example.tscn`.
+You can duplicate the scene then start from here to customize your GUI.
 
 
 ## Localization
@@ -22,7 +23,6 @@ You can also just define translations for keys in the main translation file of y
 
 ## Theme type variations
 
-- MarginWholeScreen: Let define margin in pixels
 - MarginMedium: A medium margin around tab in the settings.
 - SettingsScrollContainer: The scroll container containing the setting list.
 - SettingsVBoxContainer: The vertical box container containing the setting list.
