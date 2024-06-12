@@ -247,7 +247,6 @@ func _handle_true_child_control(control: Control) -> void:
 func _handle_external_child_control(control: Control) -> void:
 	if Engine.is_editor_hint():
 		_editor_preview_external_child_control(control)
-		print(control)
 		return
 	else:
 		control.reparent(setting_list, false)
