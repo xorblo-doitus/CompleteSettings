@@ -5,8 +5,7 @@ A premade UI containing settings that can fit any projects (Audio, keybinds etc.
 
 ## Intallation
 
-Download only `res://addons/complete_settings`, then enable
-the addon in `Project → Project Settings → Plugins`.
+Download only `res://addons/complete_settings`.
 
 
 ## Example
