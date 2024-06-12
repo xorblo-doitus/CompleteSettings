@@ -33,6 +33,8 @@ func fetch_buses() -> void:
 
 
 func create_tree() -> void:
+	EasySettings.begin_bulk_setting_change()
+	
 	clear_setting_list()
 	
 	var to_create: Array[SettingAudioBus] = [buses["Master"]]
@@ -56,3 +58,6 @@ func create_tree() -> void:
 		current.input_parent.add_child(new_input)
 			
 	tree_created.emit()
+	
+	
+	EasySettings.validate_bulk_setting_change()
