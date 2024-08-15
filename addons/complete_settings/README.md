@@ -30,7 +30,7 @@ You can also just define translations for keys in the main translation file of y
 
 ## Godot version
 
-Godot 4.1.1, may not work with 4.0, wont work with 3.x
+Godot 4.2.2 & 4.3
 
 
 ## See also :
