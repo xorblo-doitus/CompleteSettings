@@ -11,6 +11,7 @@ class_name SettingGroup
 # Possible optimizations: 
 # - Don't call sort on sub groups if they where already sorted at least one time
 
+@export_group("Icons")
 ## The texture of the button that let expand the group.
 @export var expand_texture: Texture2D:
 	set(new):
@@ -33,6 +34,7 @@ class_name SettingGroup
 		icon_modulate = new_icon_modulate
 		for icon in _icons:
 			icon.modulate = icon_modulate
+@export_group("")
 
 ## Wether this group is expanded or collapsed.
 @export var open: bool = true:
@@ -41,25 +43,26 @@ class_name SettingGroup
 		_open_button.set_pressed_no_signal(open)
 		_update_sub_entry_visibility()
 
+@export_group("Tabulation", "tab_")
 ## The minimum width of tabulation created when entering a group
 ## Real width is the biggest between this and collapse button width.
-@export var minimum_tab_width: float = 5
-@export var bonus_tab_width: float = 14
+@export var tab_minimum_width: float = 5
+@export var tab_bonus_width: float = 14
 
-@export_group("Left Line", 'left_line_')
+@export_group("Guide", 'guide_')
 ## Set to 0 to disable
-@export var left_line_width: float = -1.0
+@export var guide_width: float = -1.0
 ## Set to 0 to disable
-@export var left_line_tick_width: float = -1.0
-@export var left_line_offset_x: float = 0
-@export var left_line_upper_retract: float = 4
-## Set to (0, 0, 0, 0) to use icon_modulate
-@export var left_line_color: Color = Color(0, 0, 0, 0):
+@export var guide_tick_width: float = -1.0
+@export var guide_offset_x: float = 0
+@export var guide_upper_retract: float = 4
+## Set to (0, 0, 0, 0) to use [member icon_modulate]
+@export var guide_color: Color = Color(0, 0, 0, 0):
 	set(new):
 		if new == Color(0, 0, 0, 0):
-			left_line_color = icon_modulate
+			guide_color = icon_modulate
 		else:
-			left_line_color = new
+			guide_color = new
 
 
 # How much wide must the tree icon be to align entries.
@@ -114,7 +117,7 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	# trigger setters
-	left_line_color = left_line_color
+	guide_color = guide_color
 
 
 func _draw() -> void:
@@ -122,28 +125,28 @@ func _draw() -> void:
 		line_margin_start = _icons[1].get_global_rect().end.x - get_global_rect().position.x
 		super()
 	
-	if open and len(_icons) >= 2 and (left_line_width or left_line_tick_width):
+	if open and len(_icons) >= 2 and (guide_width or guide_tick_width):
 		var line_start: Vector2 = (
 			_get_control_center(_open_button)
-			+ Vector2(left_line_offset_x, 0)
+			+ Vector2(guide_offset_x, 0)
 		)
-		if left_line_width:
+		if guide_width:
 			draw_line(
-				line_start + Vector2(0, left_line_upper_retract),
+				line_start + Vector2(0, guide_upper_retract),
 				Vector2(line_start.x, _get_icon_texture_center(_icons[-1]).y),
-				left_line_color,
-				left_line_width,
+				guide_color,
+				guide_width,
 				true # anti-aliased
 			)
 	
-		if left_line_tick_width:
+		if guide_tick_width:
 			for i in range(1, len(_icons)):
 				var center: Vector2 = _get_icon_texture_center(_icons[i])
 				draw_line(
 					Vector2(line_start.x, center.y),
 					center,
-					left_line_color,
-					left_line_tick_width,
+					guide_color,
+					guide_tick_width,
 					true # anti-aliased
 				)
 
@@ -234,12 +237,12 @@ func _update_spacings() -> void:
 	# Find spacing
 	_open_button.custom_minimum_size.x = 0
 	_open_button.size.x = 0
-	var tab_width: float = maxf(minimum_tab_width, _open_button.size.x)
+	var tab_width: float = maxf(tab_minimum_width, _open_button.size.x)
 	if tree_branch_texture:
 		var possible_delta: int = tree_branch_texture.get_width() - collapse_texture.get_width()
 		if possible_delta > 0:
 			tab_width = maxf(tab_width, _open_button.size.x + possible_delta)
-	var new_sub_spacing = _spacing + tab_width + bonus_tab_width
+	var new_sub_spacing = _spacing + tab_width + tab_bonus_width
 	
 	if _spacing: # Don't add separation when not in a group
 		new_sub_spacing += _primary_entry.get_theme_constant("separation")
