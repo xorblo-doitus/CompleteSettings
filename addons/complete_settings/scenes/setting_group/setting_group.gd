@@ -9,7 +9,7 @@ class_name SettingGroup
 ## folder of a file system.
 
 # Possible optimizations: 
-# - Don't call sort on sub groups if they where already sorted at list one time
+# - Don't call sort on sub groups if they where already sorted at least one time
 
 ## The texture of the button that let expand the group.
 @export var expand_texture: Texture2D:
@@ -41,10 +41,18 @@ class_name SettingGroup
 		_open_button.set_pressed_no_signal(open)
 		_update_sub_entry_visibility()
 
+## The minimum width of tabulation created when entering a group
+## Real width is the biggest between this and collapse button width.
+@export var minimum_tab_width: float = 5
+@export var bonus_tab_width: float = 14
+
 @export_group("Left Line", 'left_line_')
 ## Set to 0 to disable
-@export var left_line_width: float = 1.0
-@export var left_line_offset: Vector2 = Vector2(-0.4, 0)
+@export var left_line_width: float = -1.0
+## Set to 0 to disable
+@export var left_line_tick_width: float = -1.0
+@export var left_line_offset_x: float = 0
+@export var left_line_upper_retract: float = 4
 ## Set to (0, 0, 0, 0) to use icon_modulate
 @export var left_line_color: Color = Color(0, 0, 0, 0):
 	set(new):
@@ -63,7 +71,7 @@ var _spacing: int = 0:
 # First entry is always shown
 var _entries: Array[Control] = []
 
-# First entry is the open button
+## Warning: First entry is the open button, aka a [TextureRect] istead of a [SettingGroupIcon]
 var _icons: Array[Control] = []
 
 var _primary_entry: Control:
@@ -114,14 +122,30 @@ func _draw() -> void:
 		line_margin_start = _icons[1].get_global_rect().end.x - get_global_rect().position.x
 		super()
 	
-	if left_line_width and open and len(_icons) > 2:
-		draw_line(
-			_get_line_pos_at_icon(_icons[1]),
-			_get_line_pos_at_icon(_icons[-1]),
-			left_line_color,
-			left_line_width,
-			true # anti-alisaed
+	if open and len(_icons) >= 2 and (left_line_width or left_line_tick_width):
+		var line_start: Vector2 = (
+			_get_control_center(_open_button)
+			+ Vector2(left_line_offset_x, 0)
 		)
+		if left_line_width:
+			draw_line(
+				line_start + Vector2(0, left_line_upper_retract),
+				Vector2(line_start.x, _get_icon_texture_center(_icons[-1]).y),
+				left_line_color,
+				left_line_width,
+				true # anti-aliased
+			)
+	
+		if left_line_tick_width:
+			for i in range(1, len(_icons)):
+				var center: Vector2 = _get_icon_texture_center(_icons[i])
+				draw_line(
+					Vector2(line_start.x, center.y),
+					center,
+					left_line_color,
+					left_line_tick_width,
+					true # anti-aliased
+				)
 
 
 ## Automatically called when sort_children is emitted. Make the magic of the
@@ -210,7 +234,13 @@ func _update_spacings() -> void:
 	# Find spacing
 	_open_button.custom_minimum_size.x = 0
 	_open_button.size.x = 0
-	var new_sub_spacing = _spacing + _open_button.size.x
+	var tab_width: float = maxf(minimum_tab_width, _open_button.size.x)
+	if tree_branch_texture:
+		var possible_delta: int = tree_branch_texture.get_width() - collapse_texture.get_width()
+		if possible_delta > 0:
+			tab_width = maxf(tab_width, _open_button.size.x + possible_delta)
+	var new_sub_spacing = _spacing + tab_width + bonus_tab_width
+	
 	if _spacing: # Don't add separation when not in a group
 		new_sub_spacing += _primary_entry.get_theme_constant("separation")
 	
@@ -267,5 +297,9 @@ func _on_open_button_toggled(state: bool) -> void:
 	open = state
 
 
-func _get_line_pos_at_icon(icon: SettingGroupIcon) -> Vector2:
-	return icon.get_texture_rect().get_global_rect().get_center() - global_position + left_line_offset
+func _get_icon_texture_center(icon: SettingGroupIcon) -> Vector2:
+	return _get_control_center(icon.get_texture_rect())
+
+## Return the center of the control in local coordinates
+func _get_control_center(control: Control) -> Vector2:
+	return control.get_global_rect().get_center() - global_position

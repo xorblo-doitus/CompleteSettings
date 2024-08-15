@@ -32,7 +32,7 @@ const EDITOR_PREVIEW_HINDING_ALPHA = 0.5**14+0.5**15
 			for entry in get_setting_entries():
 				entry.set_meta(&"_cached_base_locale_tr", tr(entry.setting_name))
 
-@export_category("Nodes")
+@export_group("Nodes")
 @export var setting_list: Control
 ## Call [method collapse_all] when pressed. Can be [code]null[/code]
 @export var collapse_all_button: BaseButton:
