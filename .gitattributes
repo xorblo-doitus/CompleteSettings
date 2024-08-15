@@ -6,3 +6,13 @@
 /addons/                      !export-ignore
 /addons/complete_settings     !export-ignore
 /addons/complete_settings/**  !export-ignore
+/addons/ActionIcon            !export-ignore
+/addons/ActionIcon            !export-ignore
+/addons/easy_settings/**      !export-ignore
+/addons/easy_settings/**      !export-ignore
+/addons/keybind_remap/**      !export-ignore
+/addons/keybind_remap/**      !export-ignore
+/addons/slider_spin_box/**    !export-ignore
+/addons/slider_spin_box/**    !export-ignore
+/addons/smart_line_edit/**    !export-ignore
+/addons/smart_line_edit/**    !export-ignore
