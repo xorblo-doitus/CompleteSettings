@@ -52,8 +52,11 @@ class_name SettingGroup
 @export_group("Guide", 'guide_')
 ## Set to 0 to disable
 @export var guide_width: float = -1.0
+@export_subgroup("Ticks", "guide_tick_")
 ## Set to 0 to disable
 @export var guide_tick_width: float = -1.0
+@export var guide_tick_offset_y: float = 0.0
+@export var guide_tick_right_extend: float = 0.0
 @export var guide_offset_x: float = 0
 @export var guide_upper_retract: float = 4
 ## Set to (0, 0, 0, 0) to use [member icon_modulate]
@@ -141,10 +144,13 @@ func _draw() -> void:
 	
 		if guide_tick_width:
 			for i in range(1, len(_icons)):
-				var center: Vector2 = _get_icon_texture_center(_icons[i])
+				var center: Vector2 = (
+					_get_icon_texture_center(_icons[i])
+					+ Vector2(0, guide_tick_offset_y)
+				)
 				draw_line(
 					Vector2(line_start.x, center.y),
-					center,
+					center + Vector2(guide_tick_right_extend, 0),
 					guide_color,
 					guide_tick_width,
 					true # anti-aliased
