@@ -7,6 +7,9 @@ class_name ESL
 ## Implements virtual methods
 
 
+signal value_updated(new_value, old_value)
+
+
 ## The way to sync this ESL when the setting is modified by an external source
 enum Sync {
 	ALWAYS, ## The value must always be the same as the setting
@@ -94,6 +97,7 @@ func _update_value(new_value, old_value: Variant) -> void:
 	if _ignore_update or sync == Sync.NEVER:
 		return
 	update_value(new_value, old_value)
+	value_updated.emit(new_value, old_value)
 
 
 func _create_save_debounce_timer() -> void:
