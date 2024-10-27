@@ -24,6 +24,14 @@ func read_idx(desired_idx: int) -> SettingAudioBus:
 	return self
 
 
+func get_volume_linear() -> float:
+	return db_to_linear(get_volume_db())
+
+
+func get_volume_db() -> float:
+	return AudioServer.get_bus_volume_db(idx)
+
+
 func set_volume_linear(volume: float) -> void:
 	set_volume_db(linear_to_db(volume))
 
