@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c75dajjgw0tus"]
+[gd_scene load_steps=8 format=3 uid="uid://c75dajjgw0tus"]
 
 [ext_resource type="Theme" uid="uid://d4dmxjv5l13r7" path="res://addons/complete_settings/scenes/settings/example_theme.tres" id="1_ii8xy"]
 [ext_resource type="PackedScene" uid="uid://gocrldq4i1bl" path="res://addons/complete_settings/scenes/settings/example.tscn" id="2_poagu"]
 [ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="2_qpa26"]
 [ext_resource type="PackedScene" uid="uid://cukcro8flv5mq" path="res://addons/complete_settings/scenes/setting_entry/setting_entry.tscn" id="4_e3vjl"]
 [ext_resource type="PackedScene" uid="uid://we3a300cvpef" path="res://addons/complete_settings/scenes/setting_group/setting_group.tscn" id="5_soast"]
+[ext_resource type="AudioStream" uid="uid://dbif6vf43r8ue" path="res://test/manual/coincoin.ogg" id="6_ro3mw"]
 
 [sub_resource type="GDScript" id="GDScript_3im46"]
 script/source = "extends Control
@@ -44,9 +45,17 @@ current_tab = 3
 
 [node name="SETTING_CATEGORY_SOUND" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="1"]
 visible = false
+metadata/_tab_index = 0
+
+[node name="SETTING_CATEGORY_KEYBINDS" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="2"]
+metadata/_tab_index = 1
+
+[node name="SETTING_CATEGORY_VIDEO" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="3"]
+metadata/_tab_index = 2
 
 [node name="ExempleSettingCategory" type="ScrollContainer" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="4"]
 layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="SettingList" type="VBoxContainer" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/ExempleSettingCategory"]
 layout_mode = 2
@@ -132,6 +141,7 @@ layout_mode = 2
 [node name="TemplateCategory" parent="ScreenMargin/Settings/VBoxContainer/TabContainer" index="5" instance=ExtResource("2_qpa26")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 4
 
 [node name="SettingEntry" parent="ScreenMargin/Settings/VBoxContainer/TabContainer/TemplateCategory" instance=ExtResource("4_e3vjl")]
 modulate = Color(1, 1, 1, 9.15527e-05)
@@ -202,6 +212,12 @@ offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "~open~"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ro3mw")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="Open" to="ScreenMargin/Settings" method="open"]
 
