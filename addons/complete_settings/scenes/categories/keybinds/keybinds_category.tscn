@@ -14,7 +14,10 @@ packed_keybind_mapper = ExtResource("4_qdeh6")
 collapsed_by_default = true
 alternative_event_names = Array[String](["PRIMARY_KEYBIND", "SECONDARY_KEYBIND", "TERTIARY_KEYBIND", "QUATERNARY_KEYBIND", "QUINARY_KEYBIND", "SENARY_KEYBIND", "SEPTENARY_KEYBIND", "OCTONARY_KEYBIND", "NONARY_KEYBIND", "DENARY_KEYBIND"])
 action_name_prefix = "ACTION_"
-ignored_actions = Array[StringName]([])
+default_ignores = true
+ignore_actions_with_slash = true
+list_as_blacklist = true
+action_list = Array[StringName]([])
 
 [node name="SettingList" parent="MarginContainer/Layout/ScrollContainer" index="0"]
 theme_type_variation = &"KeybindsVBoxContainer"
