@@ -36,7 +36,7 @@ static func load_volumes():
 					VolumeSlider.setting_path_prefix + AudioServer.get_bus_name(bus_idx),
 					0.0
 				)
-			)
+			) / 100
 		)
 
 
@@ -69,4 +69,3 @@ static func apply() -> void:
 static func validate() -> void:
 	EasySettings.validate_bulk_setting_change()
 	KeybindsSaver.shared.validate_bulk_remap()
-
