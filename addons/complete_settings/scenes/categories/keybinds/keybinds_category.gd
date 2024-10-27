@@ -58,8 +58,10 @@ func create_tree() -> void:
 			setting_list.remove_child(setting_group)
 			setting_group.queue_free()
 	
+	var ignored_actions = get_ignored_actions()
+	
 	for action in InputMap.get_actions():
-		if action in get_ignored_actions():
+		if action in ignored_actions:
 			continue
 		
 		var setting_group: SettingGroup
