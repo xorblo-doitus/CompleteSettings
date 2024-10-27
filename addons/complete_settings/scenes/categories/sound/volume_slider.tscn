@@ -24,5 +24,6 @@ sync = 0
 start_synced = false
 
 [connection signal="value_changed" from="SliderSpinBox" to="." method="_on_slider_spin_box_value_changed"]
+[connection signal="value_updated" from="ESLSliderSpinBox" to="." method="_on_esl_slider_spin_box_value_updated"]
 
 [editable path="SliderSpinBox"]

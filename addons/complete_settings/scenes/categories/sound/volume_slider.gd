@@ -42,5 +42,10 @@ func _ready() -> void:
 	esl.force_update()
 	super()
 
+
 func _on_slider_spin_box_value_changed(value: float) -> void:
 	bus.set_volume_linear(value/100)
+
+
+func _on_esl_slider_spin_box_value_updated(new_value: Variant, old_value: Variant) -> void:
+	bus.set_volume_linear(new_value/100)
