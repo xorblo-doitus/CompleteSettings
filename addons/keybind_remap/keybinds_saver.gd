@@ -93,6 +93,7 @@ const built_in_actions: Array[StringName] = [
 	&"ui_filedialog_refresh",
 	&"ui_filedialog_show_hidden",
 	&"ui_swap_input_direction",
+	&"ui_text_skip_selection_for_next_occurrence",
 ]
 
 
