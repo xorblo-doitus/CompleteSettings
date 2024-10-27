@@ -27,7 +27,7 @@ var _path: String:
 			var info: Dictionary = property_info.duplicate()
 			info["name"] = _path
 			if not ProjectSettings.has_setting(_path):
-				EasySettings.set_setting(_path, 100)
+				EasySettings.set_setting(_path, bus.get_volume_linear() * 100)
 				ProjectSettings.add_property_info(info)
 		if esl:
 			esl.setting = _path
