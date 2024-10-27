@@ -63,6 +63,3 @@ func _disconnect(to_disconnect: SmartLineEdit) -> void:
 	
 	if to_disconnect.submitted.is_connected(set_value):
 		to_disconnect.submitted.disconnect(set_value)
-
-
-
