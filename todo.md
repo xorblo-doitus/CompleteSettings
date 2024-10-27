@@ -1,1 +1,1 @@
-- [ ] Nothing
+- [ ] Add a way to open/edit in game `override.cfg`
